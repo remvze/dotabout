@@ -1,30 +1,30 @@
-## Setup Your OPN Profile
+## Setup Your Dotabout Profile
 
-Setting up your OPN profile is quick and account-free. Just follow these steps:
+Setting up your Dotabout profile is quick and account-free. Just follow these steps:
 
-### 1. Create a `.opn` Repository
+### 1. Create a `.about` Repository
 
 Create a public repository in your GitHub account with the name:
 
 ```
-.opn
+.about
 ```
 
-> Note: The name must be exactly `.opn`, including the leading dot.
+> Note: The name must be exactly `.about`, including the leading dot.
 
-### 2. Add a `bio.json` File
+### 2. Add an `about.json` File
 
-Inside the `.opn` repository, create a file named:
+Inside the `.about` repository, create a file named:
 
 ```
-bio.json
+about.json
 ```
 
-This file contains all the data shown on your OPN profile.
+This file contains all the data shown on your Dotabout profile.
 
-### 3. Fill in Your Bio Data
+### 3. Fill in Your About Data
 
-Here is a basic example of what your `bio.json` might look like:
+Here is a basic example of what your `about.json` might look like:
 
 ```json
 {
@@ -59,12 +59,12 @@ Here is a basic example of what your `bio.json` might look like:
 
 ### You're Live
 
-Once your `.opn` repo and `bio.json` file are public, your OPN profile is live at:
+Once your `.about` repo and `about.json` file are public, your Dotabout profile is live at:
 
 ```
-https://opn.bio/@your-github-username
+https://dotabout.me/@your-github-username
 ```
 
-To update your profile, simply edit your `bio.json` file.
+To update your profile, simply edit your `about.json` file.
 
-> Note: GitHub may cache your `bio.json` file, so changes might take a few minutes to appear on your OPN profile.
+> Note: GitHub may cache your `about.json` file, so changes might take a few minutes to appear on your Dotabout profile.

@@ -1,6 +1,6 @@
-## `bio.json` Schema
+## `about.json` Schema
 
-Your `bio.json` file defines what appears on your OPN profile. Below is a breakdown of its structure and how to use each part.
+Your `about.json` file defines what appears on your Dotabout profile. Below is a breakdown of its structure and how to use each part.
 
 ### Top-Level Fields
 
@@ -103,7 +103,7 @@ Displays a compact row of text pills, useful for tech stacks, tools, or skills.
 {
   "title": "Stack",
   "type": "stack",
-  "stack": ["Astro", "TypeScript", "React", "Postgres"]
+  "stack": ["Astro", "TypeScript", "React"]
 }
 ```
 

@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { IoEye } from 'react-icons/io5';
-import { padNumber } from '@/helpers/number';
 import { cn } from '@/helpers/styles';
 import { ProfileSchema } from '@/validators/profile';
 import { Container } from '../container';
@@ -14,10 +12,9 @@ import type { ProfileData, ProfileSection, ValidationError } from './types';
 
 interface ProfileProps {
   source: string;
-  visits: number;
 }
 
-export function Profile({ source, visits }: ProfileProps) {
+export function Profile({ source }: ProfileProps) {
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [errors, setErrors] = useState<ValidationError[]>([]);
   const [error, setError] = useState('');
@@ -80,7 +77,7 @@ export function Profile({ source, visits }: ProfileProps) {
     const previousTitle = document.title;
     const previousBackground = document.body.style.background;
 
-    document.title = `${profile.name} - OPN`;
+    document.title = `${profile.name} - Dotabout`;
 
     if (profile.style?.theme === 'light') {
       document.body.style.background = 'var(--color-neutral-950)';
@@ -117,13 +114,6 @@ export function Profile({ source, visits }: ProfileProps) {
         <header className={styles.header}>
           <h1 className={styles.name}>{profile.name}</h1>
           <p className={styles.description}>{profile.description}</p>
-
-          <div className={styles.profileVisits}>
-            <span>
-              <IoEye />
-            </span>
-            <strong>{padNumber(visits, 4)}</strong>
-          </div>
         </header>
 
         <main>
@@ -135,7 +125,7 @@ export function Profile({ source, visits }: ProfileProps) {
         </main>
 
         <footer className={styles.footer}>
-          Created using <a href="https://opn.bio">OPN</a>.
+          Created using <a href="https://dotabout.me">Dotabout</a>.
         </footer>
       </Container>
     </div>

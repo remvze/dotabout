@@ -37,7 +37,7 @@
     {
       "title": "Stack",
       "type": "stack",
-      "stack": ["Astro", "TypeScript", "React", "Drizzle", "Postgres"]
+      "stack": ["Astro", "TypeScript", "React"]
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "$id": "https://opn.bio/schema.json",
-  "description": "Schema for bio.json profile configuration.",
-  "title": "OPN Profile Schema",
+  "$id": "https://dotabout.me/schema.json",
+  "description": "Schema for about.json profile configuration.",
+  "title": "Dotabout Profile Schema",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {

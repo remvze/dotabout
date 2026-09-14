@@ -1,14 +1,13 @@
 import { getRedis } from '@/database/redis';
-import { incrementOrCreateVisit, markInactive } from './profile';
 
-const SOURCE_CACHE_PREFIX = 'source-availability';
+const SOURCE_CACHE_PREFIX = 'about-source-availability-v2';
 const SOURCE_CACHE_HIT_TTL_SECONDS = 60 * 30;
 const SOURCE_CACHE_MISS_TTL_SECONDS = 60 * 5;
 
 type CachedSourceBranch = 'main' | 'master' | 'missing';
 
 function getSourceUrl(username: string, branch: string) {
-  return `https://raw.githubusercontent.com/${username}/.opn/refs/heads/${branch}/bio.json`;
+  return `https://raw.githubusercontent.com/${username}/.about/refs/heads/${branch}/about.json`;
 }
 
 function getSourceCacheKey(username: string) {
@@ -67,9 +66,7 @@ export async function getSource(username: string) {
   const cachedBranch = await readCachedBranch(username);
 
   if (cachedBranch === 'main' || cachedBranch === 'master') {
-    const visits = await incrementOrCreateVisit(username);
-
-    return { url: getSourceUrl(username, cachedBranch), visits };
+    return { url: getSourceUrl(username, cachedBranch) };
   }
 
   if (cachedBranch === 'missing') {
@@ -81,9 +78,7 @@ export async function getSource(username: string) {
   if (main.status === 200 || main.status === 429) {
     await writeCachedBranch(username, 'main');
 
-    const visits = await incrementOrCreateVisit(username);
-
-    return { url: main.url, visits };
+    return { url: main.url };
   }
 
   const master = await fetchSource(username, 'master');
@@ -91,13 +86,10 @@ export async function getSource(username: string) {
   if (master.status === 200 || master.status === 429) {
     await writeCachedBranch(username, 'master');
 
-    const visits = await incrementOrCreateVisit(username);
-
-    return { url: master.url, visits };
+    return { url: master.url };
   }
 
   if (main.status === 404 && master.status === 404) {
-    await markInactive(username);
     await writeCachedBranch(username, 'missing');
 
     return null;

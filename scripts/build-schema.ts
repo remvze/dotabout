@@ -14,9 +14,9 @@ import { ProfileSchema } from '../src/validators/profile.ts';
 const jsonSchema = toJSONSchema(ProfileSchema);
 
 const schema = {
-  $id: 'https://opn.bio/schema.json',
-  description: 'Schema for bio.json profile configuration.',
-  title: 'OPN Profile Schema',
+  $id: 'https://dotabout.me/schema.json',
+  description: 'Schema for about.json profile configuration.',
+  title: 'Dotabout Profile Schema',
   ...jsonSchema,
 };
 

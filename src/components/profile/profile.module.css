@@ -54,27 +54,6 @@
     margin-top: 4px;
     color: var(--color-foreground-subtle);
   }
-
-  & .profileVisits {
-    position: relative;
-    display: inline-flex;
-    column-gap: 6px;
-    align-items: center;
-    padding: 6px 12px;
-    margin-top: 20px;
-    font-family: var(--font-mono);
-    font-size: var(--font-2xsm);
-    line-height: 0;
-    color: var(--color-foreground-subtler);
-    text-decoration: none;
-    border: 1px solid
-      light-dark(var(--color-neutral-800), var(--color-neutral-200));
-    border-radius: 1000px;
-
-    & strong {
-      color: var(--color-foreground-subtle);
-    }
-  }
 }
 
 .footer {

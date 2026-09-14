@@ -8,8 +8,8 @@ interface Props {
 }
 
 const title = Astro.props.title
-  ? `${Astro.props.title} — OPN`
-  : 'OPN: Your Open-Source Bio Page';
+  ? `${Astro.props.title} — Dotabout`
+  : 'Dotabout: Your Open-Source Bio Page';
 
 const description = Astro.props.description || 'Your open-source bio page.';
 
@@ -31,10 +31,10 @@ const og = Astro.props.og || '/og.png';
 
     <meta content={title} property="og:title" />
     <meta content={description} property="og:description" />
-    <meta content="OPN" property="og:site_name" />
-    <meta content="https://opn.bio/" property="og:url" />
+    <meta content="Dotabout" property="og:site_name" />
+    <meta content="https://dotabout.me/" property="og:url" />
     <meta content="website" property="og:type" />
-    <meta content={`https://opn.bio${og}`} property="og:image" />
+    <meta content={`https://dotabout.me${og}`} property="og:image" />
 
     <link href="/sitemap-index.xml" rel="sitemap" />
   </head>
