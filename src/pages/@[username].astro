@@ -9,7 +9,7 @@ if (!username) {
   return Astro.rewrite('/404');
 }
 
-const source = await getSource(username);
+const source = await getSource(username, Astro.request.headers);
 
 if (!source) {
   return Astro.rewrite('/404');

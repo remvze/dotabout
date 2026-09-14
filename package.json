@@ -22,6 +22,7 @@
     "@astrojs/vercel": "^8.2.11",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
+    "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.38.0",
     "astro": "5.16.1",
     "dotenv": "17.2.3",

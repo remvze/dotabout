@@ -1,10 +1,15 @@
+import {
+  markProfileInactive,
+  type ProfileBranch,
+  registerProfile,
+} from '@/database/profiles';
 import { getRedis } from '@/database/redis';
+import { allowGitHubLookup } from './rate-limit';
 
-const SOURCE_CACHE_PREFIX = 'about-source-availability-v2';
+const SOURCE_CACHE_PREFIX = 'about-source-availability-v3';
 const SOURCE_CACHE_HIT_TTL_SECONDS = 60 * 30;
-const SOURCE_CACHE_MISS_TTL_SECONDS = 60 * 5;
 
-type CachedSourceBranch = 'main' | 'master' | 'missing';
+type CachedSourceBranch = ProfileBranch;
 
 function getSourceUrl(username: string, branch: string) {
   return `https://raw.githubusercontent.com/${username}/.about/refs/heads/${branch}/about.json`;
@@ -33,7 +38,7 @@ async function readCachedBranch(username: string) {
       getSourceCacheKey(username),
     );
 
-    if (branch === 'main' || branch === 'master' || branch === 'missing') {
+    if (branch === 'main' || branch === 'master') {
       return branch;
     }
   } catch (error) {
@@ -50,48 +55,53 @@ async function writeCachedBranch(username: string, branch: CachedSourceBranch) {
     return;
   }
 
-  const ttlSeconds =
-    branch === 'missing'
-      ? SOURCE_CACHE_MISS_TTL_SECONDS
-      : SOURCE_CACHE_HIT_TTL_SECONDS;
-
   try {
-    await redis.set(getSourceCacheKey(username), branch, { ex: ttlSeconds });
+    await redis.set(getSourceCacheKey(username), branch, {
+      ex: SOURCE_CACHE_HIT_TTL_SECONDS,
+    });
   } catch (error) {
     console.error('Failed to write source availability cache', error);
   }
 }
 
-export async function getSource(username: string) {
+export async function getSource(username: string, headers: Headers) {
   const cachedBranch = await readCachedBranch(username);
 
   if (cachedBranch === 'main' || cachedBranch === 'master') {
     return { url: getSourceUrl(username, cachedBranch) };
   }
 
-  if (cachedBranch === 'missing') {
-    return null;
+  if (!(await allowGitHubLookup(headers))) {
+    return { url: getSourceUrl(username, 'main') };
   }
 
   const main = await fetchSource(username, 'main');
 
-  if (main.status === 200 || main.status === 429) {
+  if (main.status === 200) {
     await writeCachedBranch(username, 'main');
+    await registerProfile(username, 'main');
 
     return { url: main.url };
   }
 
+  if (main.status === 429) return { url: main.url };
+
   const master = await fetchSource(username, 'master');
 
-  if (master.status === 200 || master.status === 429) {
+  if (master.status === 200) {
     await writeCachedBranch(username, 'master');
+    await registerProfile(username, 'master');
 
     return { url: master.url };
   }
 
+  if (master.status === 429) return { url: main.url };
+
   if (main.status === 404 && master.status === 404) {
-    await writeCachedBranch(username, 'missing');
+    await markProfileInactive(username);
 
     return null;
   }
+
+  return { url: main.url };
 }
