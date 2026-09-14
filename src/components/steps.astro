@@ -1,212 +1,124 @@
----
-import Section from './section.astro';
----
+<section class="setup" id="get-started">
+  <div class="heading">
+    <h2>Live in three steps.</h2>
+    <p>No signup or configuration required.</p>
+  </div>
 
-<Section title="How to Get Started?">
   <ol class="steps">
     <li>
-      <div class="count">
-        <span class="one">01</span>
-      </div>
-      <h3 class="title"><span class="one">Create a repository</span></h3>
-      <p class="desc">
-        Create a public repository in your GitHub account called
-        <code>.about</code>
-      </p>
+      <span>1</span>
+      <h3>Create <code>.about</code></h3>
+      <p>Make a public repository in your GitHub account.</p>
     </li>
     <li>
-      <div class="count">
-        <span class="two">02</span>
-      </div>
-      <h3 class="title"><span class="two">Add an about file</span></h3>
-      <p class="desc">
-        Add an <code>about.json</code> file inside your
-        <code>.about</code>
-        repository. You can copy the base from
-        <a
-          href="https://github.com/remvze/dotabout/blob/main/template/about.json"
-          rel="noreferrer"
-          target="_blank"
-          >here</a
-        >.
-      </p>
+      <span>2</span>
+      <h3>Add <code>about.json</code></h3>
+      <p>Start with the template and make the content yours.</p>
     </li>
     <li>
-      <div class="count">
-        <span class="three">03</span>
-      </div>
-      <h3 class="title"><span class="three">Enter your info</span></h3>
-      <p class="desc">
-        Based on the
-        <a
-          href="https://github.com/remvze/dotabout/blob/main/docs/schema.md"
-          rel="noreferrer"
-          target="_blank"
-          >schema</a
-        >, fill <code>about.json</code> with your information.
-      </p>
-    </li>
-    <li>
-      <div class="count">
-        <span class="four">04</span>
-      </div>
-      <h3 class="title"><span class="four">Your profile is ready</span></h3>
-      <p class="desc">
-        Your bio page will be generated automatically and available at
-        <code>dotabout.me/@your-github-username</code>.
-      </p>
+      <span>3</span>
+      <h3>Open your page</h3>
+      <p>Visit <code>dotabout.me/@you</code> and share it anywhere.</p>
     </li>
   </ol>
-</Section>
+
+  <div class="resources">
+    <a
+      class="primary"
+      href="https://github.com/remvze/dotabout/blob/main/template/about.json"
+      >Use the template</a
+    >
+    <a href="https://github.com/remvze/dotabout/blob/main/docs/schema.md"
+      >Read the schema <span>→</span></a
+    >
+  </div>
+</section>
 
 <style>
-p {
-  line-height: 1.7;
-  color: var(--color-foreground-subtle);
+.setup {
+  padding: 120px 0 100px;
 
-  & strong {
+  & .heading h2 {
+    font-size: var(--font-xlg);
     font-weight: 500;
-    color: var(--color-foreground);
+    letter-spacing: -0.025em;
   }
 
-  & code {
-    display: inline-block;
-    padding: 2px 8px;
-    margin: 0 2px;
-    font-family: var(--font-mono);
-    font-size: var(--font-xsm);
-    color: var(--color-foreground);
-    background: var(--color-neutral-100);
-    border-radius: 8px;
-    box-shadow: inset 0 -1px 0 var(--color-neutral-300);
-  }
-
-  & a {
-    color: var(--color-foreground);
-    text-decoration: underline dotted #ff6b6b;
-    text-underline-offset: 4px;
-
-    &.mono {
-      font-family: var(--font-mono);
-      font-size: var(--font-sm);
-    }
+  & .heading p {
+    margin-top: 10px;
+    color: var(--color-foreground-subtle);
   }
 }
 
 .steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 42px;
+  margin-top: 56px;
   list-style: none;
 
-  & li {
+  & li > span {
+    display: block;
+    margin-bottom: 20px;
+    font-family: var(--font-mono);
+    font-size: var(--font-xsm);
+    color: #f06595;
+  }
+
+  & h3 {
+    font-weight: 500;
+  }
+
+  & p {
+    margin-top: 9px;
+    line-height: 1.65;
     color: var(--color-foreground-subtle);
+  }
 
-    & .count {
-      margin-bottom: 12px;
+  & code {
+    font-family: var(--font-mono);
+    font-size: var(--font-xsm);
+    color: var(--color-foreground);
+  }
+}
 
-      & span {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        font-family: var(--font-mono);
-        font-size: var(--font-sm);
-        font-weight: 500;
-        color: var(--color-foreground);
-        background: linear-gradient(transparent, var(--color-neutral-100));
-        border-radius: 12px;
+.resources {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-top: 52px;
 
-        &.one {
-          color: #ff922b;
-          box-shadow: inset 0 -1px 0 rgb(255 146 43 / 75%);
-        }
+  & a {
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--color-foreground-subtle);
+    text-decoration: none;
 
-        &.two {
-          color: #f06595;
-          box-shadow: inset 0 -1px 0 rgb(240 101 149 / 75%);
-        }
-
-        &.three {
-          color: #51cf66;
-          box-shadow: inset 0 -1px 0 rgb(81 207 102 / 75%);
-        }
-
-        &.four {
-          color: #339af0;
-          box-shadow: inset 0 -1px 0 rgb(51 154 240 / 75%);
-        }
-      }
-    }
-
-    &:not(:last-of-type) {
-      margin-bottom: 32px;
-    }
-
-    & .title {
-      margin-bottom: 4px;
-      font-weight: 500;
-
-      & span {
-        --color: red;
-
-        color: var(--color-foreground);
-        background-image: linear-gradient(
-          135deg,
-          var(--color),
-          var(--color-foreground),
-          var(--color-foreground)
-        );
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-
-        &::selection {
-          -webkit-text-fill-color: var(--color-foreground);
-        }
-
-        &.one {
-          --color: #ff922b;
-        }
-
-        &.two {
-          --color: #f06595;
-        }
-
-        &.three {
-          --color: #51cf66;
-        }
-
-        &.four {
-          --color: #339af0;
-        }
-      }
-    }
-
-    & .desc {
-      max-width: 375px;
-      text-wrap: balance;
-    }
-
-    & strong {
-      font-weight: 500;
+    &:hover {
       color: var(--color-foreground);
     }
+  }
 
-    & code {
-      display: inline-block;
-      padding: 2px 8px;
-      margin: 0 2px;
-      font-family: var(--font-mono);
-      font-size: var(--font-xsm);
-      color: var(--color-foreground);
-      background: var(--color-neutral-100);
-      border-radius: 8px;
-      box-shadow: inset 0 -1px 0 var(--color-neutral-300);
-    }
+  & .primary {
+    padding: 11px 17px;
+    color: var(--color-neutral-50);
+    background: var(--color-neutral-950);
+    border-radius: 10px;
 
-    & a {
-      color: var(--color-foreground);
-      text-decoration: underline dotted #ff6b6b;
-      text-underline-offset: 4px;
+    &:hover {
+      color: var(--color-neutral-50);
     }
+  }
+}
+
+@media (width <= 720px) {
+  .setup {
+    padding: 90px 0 80px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 38px;
   }
 }
 </style>

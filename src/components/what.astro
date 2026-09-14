@@ -1,50 +1,71 @@
----
-import Section from './section.astro';
----
+<section class="about">
+  <div>
+    <h2>Your page stays yours.</h2>
+    <p>
+      Dotabout reads a public file from GitHub and turns it into a clean,
+      shareable profile. Edit the file whenever you want. The page follows.
+    </p>
+  </div>
 
-<Section title="What is Dotabout?">
-  <p class="content">
-    <strong>Dotabout</strong>
-    is an open-source bio page that lives on your GitHub. Instead of creating
-    yet another account, all you need is a public repo named
-    <strong>.about</strong>
-    with a simple <code>about.json</code> file inside. From there, your profile
-    is generated automatically and stays fully in your control. (Example:
-    <a class="mono" href="https://dotabout.me/@remvze">dotabout.me/@remvze</a>)
-  </p>
-</Section>
+  <div class="flow">
+    <code>github.com/you/.about/about.json</code>
+    <span aria-hidden="true">→</span>
+    <code>dotabout.me/@you</code>
+  </div>
+</section>
 
 <style>
-.content {
-  line-height: 1.7;
-  color: var(--color-foreground-subtle);
+.about {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 72px;
+  align-items: center;
+  padding: 72px 0;
 
-  & strong {
+  & h2 {
+    font-size: var(--font-xlg);
     font-weight: 500;
-    color: var(--color-foreground);
+    letter-spacing: -0.025em;
   }
 
+  & p {
+    margin-top: 16px;
+    line-height: 1.7;
+    color: var(--color-foreground-subtle);
+  }
+}
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 30px;
+  background: var(--color-neutral-100);
+  border-radius: 16px;
+
   & code {
-    display: inline-block;
-    padding: 2px 8px;
-    margin: 0 2px;
     font-family: var(--font-mono);
     font-size: var(--font-xsm);
     color: var(--color-foreground);
-    background: var(--color-neutral-100);
-    border-radius: 8px;
-    box-shadow: inset 0 -1px 0 var(--color-neutral-300);
   }
 
-  & a {
-    color: var(--color-foreground);
-    text-decoration: underline dotted #ff6b6b;
-    text-underline-offset: 4px;
+  & span {
+    margin-left: 12px;
+    color: #f06595;
+    transform: rotate(90deg);
+  }
+}
 
-    &.mono {
-      font-family: var(--font-mono);
-      font-size: var(--font-sm);
-    }
+@media (width <= 720px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .flow {
+    padding: 24px;
+    overflow: hidden;
   }
 }
 </style>

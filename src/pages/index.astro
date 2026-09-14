@@ -7,29 +7,57 @@ import Layout from '@/layouts/layout.astro';
 ---
 
 <Layout>
-  <Container>
+  <Container wide>
     <Hero />
     <What />
     <Steps />
 
     <footer>
-      Check Dotabout on <a href="https://github.com/remvze/dotabout">GitHub</a>.
+      <div><span class="footerMark"></span><span>dotabout.me</span></div>
+      <p>
+        Open source on <a href="https://github.com/remvze/dotabout">GitHub</a>.
+      </p>
     </footer>
   </Container>
 </Layout>
 
 <style>
 footer {
-  padding: 40px 0 60px;
-  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 34px 0 50px;
+  margin-top: 20px;
   font-size: var(--font-sm);
   color: var(--color-foreground-subtle);
   border-top: 1px solid var(--color-neutral-200);
+
+  & div {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    color: var(--color-foreground);
+  }
+
+  & .footerMark {
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(45deg, #ff5f6d, #ffc371);
+    border-radius: 50%;
+  }
 
   & a {
     color: var(--color-foreground);
     text-decoration: underline dotted #ff6b6b;
     text-underline-offset: 4px;
+  }
+}
+
+@media (width <= 520px) {
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
   }
 }
 </style>

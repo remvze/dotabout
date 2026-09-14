@@ -1,38 +1,130 @@
+<header class="topbar">
+  <a class="brand" href="/" aria-label="Dotabout home">
+    <span class="mark"></span>
+    <span>dotabout</span>
+  </a>
+  <nav aria-label="Main navigation">
+    <a href="https://github.com/remvze/dotabout">GitHub</a>
+    <a href="#get-started">Get started</a>
+  </nav>
+</header>
+
 <section class="hero">
-  <div class="logo"></div>
-  <h1>dotabout<span>.me</span></h1>
-  <p>Your open-source bio page.</p>
+  <div class="copy">
+    <h1>Your corner of the internet, from one file.</h1>
+    <p>
+      Publish a personal page from your GitHub profile. No account, no
+      dashboard, and no lock-in.
+    </p>
+    <div class="actions">
+      <a class="primary" href="#get-started">Create your page</a>
+      <a class="secondary" href="/@remvze">View a demo <span>→</span></a>
+    </div>
+  </div>
 </section>
 
 <style>
-.hero {
-  padding: 120px 0 60px;
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
 
-  & .logo {
-    width: 20px;
-    height: 20px;
-    margin-bottom: 40px;
+  & a {
+    color: var(--color-foreground-subtle);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-foreground);
+    }
+  }
+
+  & .brand {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 500;
+    color: var(--color-foreground);
+  }
+
+  & .mark {
+    width: 14px;
+    height: 14px;
     background: linear-gradient(45deg, #ff5f6d, #ffc371);
     border-radius: 50%;
   }
 
-  & h1 {
-    margin-bottom: 4px;
-    font-weight: 500;
-    color: var(--color-foreground);
+  & nav {
+    display: flex;
+    gap: 24px;
+    font-size: var(--font-sm);
+  }
+}
 
-    & span {
-      display: inline-block;
-      margin-left: 2px;
-      font-family: var(--font-mono);
-      font-size: var(--font-xsm);
-      font-weight: 400;
-      color: var(--color-foreground-subtler);
-    }
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 570px;
+  padding: 90px 0 130px;
+
+  & h1 {
+    max-width: 560px;
+    font-size: var(--font-3xlg);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
   }
 
-  & p {
+  & .copy > p {
+    max-width: 520px;
+    margin-top: 24px;
+    font-size: var(--font-md);
+    line-height: 1.55;
     color: var(--color-foreground-subtle);
+  }
+
+  & .actions {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    margin-top: 36px;
+
+    & a {
+      font-size: var(--font-sm);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    & .primary {
+      padding: 11px 17px;
+      color: var(--color-neutral-50);
+      background: var(--color-neutral-950);
+      border-radius: 10px;
+    }
+
+    & .secondary {
+      color: var(--color-foreground-subtle);
+
+      &:hover {
+        color: var(--color-foreground);
+      }
+
+      & span {
+        margin-left: 4px;
+      }
+    }
+  }
+}
+
+@media (width <= 720px) {
+  .hero {
+    min-height: auto;
+    padding: 80px 0 100px;
+
+    & h1 {
+      font-size: var(--font-2xlg);
+    }
   }
 }
 </style>
