@@ -6,7 +6,7 @@
 
 ---
 
-### 🪶 What Is Dotabout?
+### What Is Dotabout?
 
 **Dotabout** is an open-source bio platform that reads your profile data directly from a GitHub repository.
 
@@ -25,7 +25,7 @@ Because your data lives entirely in your own repo, you **fully own and control i
 
 ---
 
-### ⚙️ How It Works
+### How It Works
 
 1. Create a new public repository named `.about`
 2. Add an `about.json` file inside it (you can copy it from [here](https://github.com/remvze/dotabout/blob/main/template/about.json))
@@ -39,7 +39,7 @@ https://dotabout.me/@<your-github-username>
 
 ---
 
-### 🧩 Example
+### Example
 
 - **Page:** [dotabout.me/@remvze](https://dotabout.me/@remvze)
 - **Source:** [github.com/remvze/.about](https://github.com/remvze/.about)
